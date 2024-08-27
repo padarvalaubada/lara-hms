@@ -15,7 +15,6 @@ class Beds extends Component
 
     protected $paginationTheme = 'bootstrap';
     public $room;
-
     public $patient_id;
     public $room_id;
     public $alloted_time = '';
@@ -57,7 +56,6 @@ class Beds extends Component
         if ($this->edit_bed_id) {
 
             $this->update($this->edit_bed_id);
-
         } else {
 
             $this->validate([
@@ -80,7 +78,6 @@ class Beds extends Component
             session()->flash('message', 'Bed Assigned successfully.');
             $this->_page = "index";
         }
-
     }
 
 
@@ -114,7 +111,6 @@ class Beds extends Component
 
         $this->button_text = "Add New Bed";
         $this->_page = "index";
-
     }
 
     public function delete($id)

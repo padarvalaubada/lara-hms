@@ -16,24 +16,20 @@ class Appiontment extends Component
     public $doctor;
     public $start_timeee;
     public $endtime;
-
     public $edit_appointment_id;
     public $button_text = "Add New Appointment";
-
-
 
     public function add_appointment()
     {
         if ($this->edit_appointment_id) {
 
             $this->update($this->edit_appointment_id);
-
-        }else{
+        } else {
             $this->validate([
                 'patient' => 'required|numeric',
                 'doctor' => 'required|numeric',
                 'nurse' => 'required|numeric',
-                ]);
+            ]);
             appointment::create([
                 'patient_id'         => $this->patient,
                 'nurse_id'           => $this->nurse,
@@ -42,17 +38,16 @@ class Appiontment extends Component
                 'outtime ' => $this->endtime,
             ]);
             //unset variables
-            $this->patient="";
-            $this->doctor="";
-            $this->nurse="";
-            $this->start_timeee="";
-            $this->endtime="";
+            $this->patient = "";
+            $this->doctor = "";
+            $this->nurse = "";
+            $this->start_timeee = "";
+            $this->endtime = "";
             session()->flash('message', 'Appointment Created successfully.');
         }
-
     }
 
-     public function edit($id)
+    public function edit($id)
     {
         $appointment = appointment::findOrFail($id);
         $this->edit_appointment_id = $id;
@@ -63,15 +58,15 @@ class Appiontment extends Component
         $this->start_timeee = $appointment->intime;
         $this->endtime = $appointment->outtime;
 
-        $this->button_text="Update Appointment";
+        $this->button_text = "Update Appointment";
     }
     public function update($id)
     {
         $this->validate([
-                'patient' => 'required|numeric',
-                'doctor' => 'required|numeric',
-                'nurse' => 'required|numeric',
-            ]);
+            'patient' => 'required|numeric',
+            'doctor' => 'required|numeric',
+            'nurse' => 'required|numeric',
+        ]);
 
         $appointment = appointment::findOrFail($id);
         $appointment->patient_id = $this->patient;
@@ -82,19 +77,18 @@ class Appiontment extends Component
 
         $appointment->save();
 
-        $this->patient="";
-        $this->doctor="";
-        $this->nurse="";
-        $this->start_timeee="";
-        $this->endtime="";
+        $this->patient = "";
+        $this->doctor = "";
+        $this->nurse = "";
+        $this->start_timeee = "";
+        $this->endtime = "";
 
         session()->flash('message', 'Appointment Updated Successfully.');
 
         $this->button_text = "Add New Appointment";
+    }
 
-}
-
-     public function delete($id)
+    public function delete($id)
     {
         appointment::find($id)->delete();
         session()->flash('message', 'Appointment Deleted Successfully.');
@@ -103,11 +97,11 @@ class Appiontment extends Component
 
     public function render()
     {
-        return view('livewire.admins.appiontment',[
-            'patients'=> patient::all(),
-            'nurses'=> nurse::all(),
-            'doctors'=> doctor::all(),
-            'appointments'=> appointment::all(),
+        return view('livewire.admins.appiontment', [
+            'patients' => patient::all(),
+            'nurses' => nurse::all(),
+            'doctors' => doctor::all(),
+            'appointments' => appointment::all(),
         ])->layout('admins.layouts.app');
     }
 }

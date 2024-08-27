@@ -41,7 +41,7 @@
 </head>
 
 <body class="clinic_version">
- 
+
 
     <!-- LOADER -->
     <div id="preloader">
@@ -52,7 +52,8 @@
         <div class="header-top wow fadeIn">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}"><img
-                        src="{{ config('app.url') . 'storage/' . $settings["logo"] }}"
+                        src="{{ asset('images/' . $settings["logo"]) }}"
+                        {{-- public\images\logo.png --}}
                         alt="logo image "></a>
                 <div class="right-header">
                     <div class="header-info">
